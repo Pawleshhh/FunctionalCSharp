@@ -307,91 +307,91 @@ public static partial class Fp
         this Func<T1, TLast, TResult> func,
         T1 t1)
     {
-        return func.Partly(t1);
+        return func.Curry(t1);
     }
     public static Func<TLast, TResult> Back<T1, T2, TLast, TResult>(
         this Func<T1, T2, TLast, TResult> func,
         T1 t1, T2 t2)
     {
-        return func.Partly(t1, t2);
+        return func.Curry(t1, t2);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, TLast, TResult>(
         this Func<T1, T2, T3, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3)
     {
-        return func.Partly(t1, t2, t3);
+        return func.Curry(t1, t2, t3);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, TLast, TResult>(
         this Func<T1, T2, T3, T4, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4)
     {
-        return func.Partly(t1, t2, t3, t4);
+        return func.Curry(t1, t2, t3, t4);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5)
     {
-        return func.Partly(t1, t2, t3, t4, t5);
+        return func.Curry(t1, t2, t3, t4, t5);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6);
+        return func.Curry(t1, t2, t3, t4, t5, t6);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13, T14 t14)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14);
     }
     public static Func<TLast, TResult> Back<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TLast, TResult>(
         this Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TLast, TResult> func,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13, T14 t14, T15 t15)
     {
-        return func.Partly(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15);
+        return func.Curry(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15);
     }
     #endregion Back
 
