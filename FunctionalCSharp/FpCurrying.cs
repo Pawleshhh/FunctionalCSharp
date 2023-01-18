@@ -198,7 +198,7 @@ public static partial class Fp
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9) => (t10, t11, t12, t13, t14, t15, last) => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, last);
     #endregion
 
-    #region Parlty Action Last 8 args
+    #region Curry Action Last 8 args
     public static Action<T2, T3, T4, T5, T6, T7, T8, TLast> Curry<T1, T2, T3, T4, T5, T6, T7, T8, TLast>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, TLast> action,
         T1 t1) => (t2, t3, t4, t5, t6, t7, t8, last) => action(t1, t2, t3, t4, t5, t6, t7, t8, last);
     public static Action<T3, T4, T5, T6, T7, T8, T9, TLast> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast> action,
@@ -217,7 +217,7 @@ public static partial class Fp
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8) => (t9, t10, t11, t12, t13, t14, t15, last) => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, last);
     #endregion
 
-    #region Parlty Action Last 9 args
+    #region Curry Action Last 9 args
     public static Action<T2, T3, T4, T5, T6, T7, T8, T9, TLast> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast> action,
         T1 t1) => (t2, t3, t4, t5, t6, t7, t8, t9, last) => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, last);
     public static Action<T3, T4, T5, T6, T7, T8, T9, T10, TLast> Curry<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast>(this Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast> action,
