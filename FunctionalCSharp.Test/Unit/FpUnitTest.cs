@@ -3,7 +3,7 @@
 namespace FunctionalCSharp.Test;
 
 [TestFixture]
-internal class UnitTest
+internal class FpUnitTest
 {
 
     [Test]
@@ -22,7 +22,7 @@ internal class UnitTest
         foreach (var createMethod in createMethods)
         {
             var genericParamsLength = createMethod.GetGenericArguments().Length;
-            UnitTest.parameters = Enumerable.Range(0, genericParamsLength).Select(x => new object()).ToArray();
+            FpUnitTest.parameters = Enumerable.Range(0, genericParamsLength).Select(x => new object()).ToArray();
             var createMethodParams = createMethod.GetParameters();
             var actionType = createMethodParams.Single().ParameterType;
             var actionMethod = actionMethods.Where(x => x.GetGenericArguments().Length == genericParamsLength).Single();
@@ -31,16 +31,42 @@ internal class UnitTest
                 : actionMethod;
             var @delegate = genericMethod.CreateDelegate(actionType);
             var func = createMethod.Invoke(null, new[] { @delegate }) as Delegate;
-            var result = func!.DynamicInvoke(UnitTest.parameters);
+            var result = func!.DynamicInvoke(FpUnitTest.parameters);
 
             Assert.That(result as Unit, Is.SameAs(Fp.UnitValue), $"Create({genericParamsLength} generic params)");
         }
 
-        IEnumerable<object> GetParams(int length)
-            => Enumerable.Range(0, length).Select(x => new object()).ToArray();
+        Type[] GetObjectTypes(int length)
+            => Enumerable.Range(0, length).Select(x => new object()).Select(x => x.GetType()).ToArray();
+    }
+
+    [Test]
+    public void Unit_AllOverloadedUnitExtensionMethods_ArgumentsPassedCorrectlyAndReturnsUnit()
+    {
+        var actionMethods = GetActionMethods();
+        var unitMethods = GetUnitMethods().Select(x => x.IsGenericMethod
+            ? x.MakeGenericMethod(GetObjectTypes(x.GetGenericArguments().Length))
+            : x);
+        foreach (var unitMethod in unitMethods)
+        {
+            var genericParamsLength = unitMethod.GetGenericArguments().Length;
+            FpUnitTest.parameters = Enumerable.Range(0, genericParamsLength).Select(x => new object()).ToArray();
+            var unitMethodParams = unitMethod.GetParameters();
+            var actionType = unitMethodParams.First().ParameterType;
+            var actionMethod = actionMethods.Where(x => x.GetGenericArguments().Length == genericParamsLength).Single();
+            var genericMethod = actionMethod.IsGenericMethodDefinition
+                ? actionMethod.MakeGenericMethod(GetObjectTypes(genericParamsLength))
+                : actionMethod;
+            var @delegate = genericMethod.CreateDelegate(actionType);
+            var unitParams = new List<object>() { @delegate };
+            unitParams.AddRange(FpUnitTest.parameters);
+            var result = unitMethod.Invoke(null, unitParams.ToArray()) as Unit;
+
+            Assert.That(result, Is.SameAs(Fp.UnitValue), $"Create({genericParamsLength} generic params)");
+        }
 
         Type[] GetObjectTypes(int length)
-            => GetParams(length).Select(x => x.GetType()).ToArray();
+            => Enumerable.Range(0, length).Select(x => new object()).Select(x => x.GetType()).ToArray();
     }
 
     private IEnumerable<MethodInfo> GetCreateMethods()
@@ -48,10 +74,15 @@ internal class UnitTest
         .GetMethods(BindingFlags.Static | BindingFlags.Public)
         .Where(x => x.Name == nameof(Unit.Create));
 
-    private IEnumerable<MethodInfo> GetActionMethods()
-        => typeof(UnitTest)
+    private IEnumerable<MethodInfo> GetUnitMethods()
+        => typeof(Fp)
         .GetMethods(BindingFlags.Static | BindingFlags.Public)
-        .Where(x => x.Name == nameof(UnitTest.ActionMethod));
+        .Where(x => x.Name == nameof(Fp.Unit));
+
+    private IEnumerable<MethodInfo> GetActionMethods()
+        => typeof(FpUnitTest)
+        .GetMethods(BindingFlags.Static | BindingFlags.Public)
+        .Where(x => x.Name == nameof(FpUnitTest.ActionMethod));
 
     private static void AssertCreateParameters(params object?[] parameters)
         => Assert.Multiple(() =>
@@ -59,7 +90,7 @@ internal class UnitTest
             for (int i = 0; i < parameters.Length; i++)
             {
                 var p = parameters[i];
-                Assert.That(p, Is.SameAs(UnitTest.parameters[i]));
+                Assert.That(p, Is.SameAs(FpUnitTest.parameters[i]));
             }
         });
 
