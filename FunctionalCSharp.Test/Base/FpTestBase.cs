@@ -48,6 +48,25 @@ internal abstract partial class FpTestBase
         .GetMethods(bindingAttr)
         .Where(x => x.Name == name);
 
+    public static object[] BuildParameters(params object[] parameters)
+    {
+        IEnumerable<object> result = Enumerable.Empty<object>();
+
+        foreach (var p in parameters)
+        {
+            if (p is IEnumerable<object> en)
+            {
+                result = result.Concat(en);
+            }
+            else
+            {
+                result = result.Append(p);
+            }
+        }
+
+        return result.ToArray();
+    }
+
     private static MethodBase? GetCallingMethod()
         => new StackTrace()?.GetFrame(2)?.GetMethod();
 
