@@ -2,6 +2,7 @@
 
 namespace FunctionalCSharp.Test;
 
+[TestFixture]
 internal class FpComposeTest : FpTestBase
 {
 
@@ -22,22 +23,25 @@ internal class FpComposeTest : FpTestBase
         var composeMethods = GetMethods(typeof(Fp), nameof(Fp.Compose), BindingFlags.Static | BindingFlags.Public)
             .MakeGenericMethodIfPossible();
         var funcMethods = GetMethods<FpComposeTest>(nameof(FpComposeTest.FuncMethod));
-        foreach (var composeMethod in composeMethods)
+        Assert.Multiple(() =>
         {
-            FpComposeTest.funcId = 1;
+            foreach (var composeMethod in composeMethods)
+            {
+                FpComposeTest.funcId = 1;
 
-            var funcType = composeMethod.GetParameters().First().ParameterType;
-            var funcDelegate1 = funcMethods.CreateDelegateOfType(funcType, this);
-            var funcDelegate2 = (Delegate)funcDelegate1.Clone();
+                var funcType = composeMethod.GetParameters().First().ParameterType;
+                var funcDelegate1 = funcMethods.CreateDelegateOfType(funcType, this);
+                var funcDelegate2 = (Delegate)funcDelegate1.Clone();
 
-            FpComposeTest.func1Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
-            FpComposeTest.func2Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
+                FpComposeTest.func1Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
+                FpComposeTest.func2Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
 
-            var allParams = BuildComposeParameters(funcDelegate1, funcDelegate2);
-            var resultFunc = composeMethod.Invoke(null, allParams) as Func<object, object>;
+                var allParams = BuildComposeParameters(funcDelegate1, funcDelegate2);
+                var resultFunc = composeMethod.Invoke(null, allParams) as Func<object, object>;
 
-            Assert.That(resultFunc!(FpComposeTest.func1Parameters.Last()), Is.SameAs(FpComposeTest.resultObj));
-        }
+                Assert.That(resultFunc!(FpComposeTest.func1Parameters.Last()), Is.SameAs(FpComposeTest.resultObj));
+            }
+        });
     }
 
     [Test]
@@ -47,22 +51,25 @@ internal class FpComposeTest : FpTestBase
         var composeMethods = GetMethods(typeof(Fp), nameof(Fp.ComposeBack), BindingFlags.Static | BindingFlags.Public)
             .MakeGenericMethodIfPossible();
         var funcMethods = GetMethods<FpComposeTest>(nameof(FpComposeTest.FuncMethod));
-        foreach (var composeMethod in composeMethods)
+        Assert.Multiple(() =>
         {
-            FpComposeTest.funcId = 2;
+            foreach (var composeMethod in composeMethods)
+            {
+                FpComposeTest.funcId = 2;
 
-            var funcType = composeMethod.GetParameters().First().ParameterType;
-            var funcDelegate1 = funcMethods.CreateDelegateOfType(funcType, this);
-            var funcDelegate2 = (Delegate)funcDelegate1.Clone();
+                var funcType = composeMethod.GetParameters().First().ParameterType;
+                var funcDelegate1 = funcMethods.CreateDelegateOfType(funcType, this);
+                var funcDelegate2 = (Delegate)funcDelegate1.Clone();
 
-            FpComposeTest.func1Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
-            FpComposeTest.func2Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
+                FpComposeTest.func1Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
+                FpComposeTest.func2Parameters = GenerateParams(funcType.GetGenericArguments().Length - 1);
 
-            var allParams = BuildComposeParameters(funcDelegate1, funcDelegate2);
-            var resultFunc = composeMethod.Invoke(null, allParams) as Func<object, object>;
+                var allParams = BuildComposeParameters(funcDelegate1, funcDelegate2);
+                var resultFunc = composeMethod.Invoke(null, allParams) as Func<object, object>;
 
-            Assert.That(resultFunc!(FpComposeTest.func2Parameters.Last()), Is.SameAs(FpComposeTest.resultObj));
-        }
+                Assert.That(resultFunc!(FpComposeTest.func2Parameters.Last()), Is.SameAs(FpComposeTest.resultObj));
+            }
+        });
     }
 
     private static object[] BuildComposeParameters(Delegate funcDelegate1, Delegate funcDelegate2)

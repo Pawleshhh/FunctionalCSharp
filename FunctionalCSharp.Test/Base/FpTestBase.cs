@@ -38,15 +38,17 @@ internal abstract partial class FpTestBase
     public static object[] GenerateParams(int length)
         => Enumerable.Range(0, length).Select(x => new object()).ToArray();
 
-    public static IEnumerable<MethodInfo> GetMethods<T>(string name, BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Public)
+    public static IEnumerable<MethodInfo> GetMethods<T>(string name, BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Public, Func<MethodInfo, bool>? condition = null)
         => typeof(T)
         .GetMethods(bindingAttr)
-        .Where(x => x.Name == name);
+        .Where(x => x.Name == name
+            && (condition == null || condition(x)));
 
-    public static IEnumerable<MethodInfo> GetMethods(Type type, string name, BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Public)
+    public static IEnumerable<MethodInfo> GetMethods(Type type, string name, BindingFlags bindingAttr = BindingFlags.Instance | BindingFlags.Public, Func<MethodInfo, bool>? condition = null)
         => type
         .GetMethods(bindingAttr)
-        .Where(x => x.Name == name);
+        .Where(x => x.Name == name
+            && (condition == null || condition(x)));
 
     public static object[] BuildParameters(params object[] parameters)
     {
