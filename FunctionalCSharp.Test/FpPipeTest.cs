@@ -11,9 +11,9 @@ internal class FpPipeTest : FpTestBase
     private static object[] actionIntoParameters = new object[0];
     private static object actionIntoLastArg = new object();
     
-    private static object[] funcIntoParameters = new object[0];
+    private static object[] funcParameters = new object[0];
     private static object funcIntoArg = new object();
-    private static object funcIntoResult = new object();
+    private static object funcResult = new object();
 
     [Test]
     public void Into_ActionDelegate_ParametersAreValid()
@@ -52,12 +52,12 @@ internal class FpPipeTest : FpTestBase
             {
                 var funcType = intoMethod.GetParameters().ElementAt(1).ParameterType;
                 var @delegate = funcMethods.CreateDelegateOfType(funcType, this);
-                FpPipeTest.funcIntoParameters = GenerateParams(funcType.GenericTypeArguments.Length - 1);
-                FpPipeTest.funcIntoArg = FpPipeTest.funcIntoParameters.Last();
+                FpPipeTest.funcParameters = GenerateParams(funcType.GenericTypeArguments.Length - 1);
+                FpPipeTest.funcIntoArg = FpPipeTest.funcParameters.Last();
 
-                var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcIntoParameters.SkipLast(1)));
+                var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcParameters.SkipLast(1)));
 
-                Assert.That(result, Is.SameAs(FpPipeTest.funcIntoResult));
+                Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
             }
         });
     }
@@ -77,12 +77,46 @@ internal class FpPipeTest : FpTestBase
             {
                 var funcType = intoMethod.GetParameters().ElementAt(1).ParameterType;
                 var @delegate = funcMethods.CreateDelegateOfType(funcType, this);
-                FpPipeTest.funcIntoParameters = GenerateParams(funcType.GenericTypeArguments.Length - 1);
-                FpPipeTest.funcIntoArg = FpPipeTest.funcIntoParameters.First();
+                FpPipeTest.funcParameters = GenerateParams(funcType.GenericTypeArguments.Length - 1);
+                FpPipeTest.funcIntoArg = FpPipeTest.funcParameters.First();
 
-                var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcIntoParameters.Skip(1)));
+                var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcParameters.Skip(1)));
 
-                Assert.That(result, Is.SameAs(FpPipeTest.funcIntoResult));
+                Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
+            }
+        });
+    }
+
+    [Test]
+    public void Back_FuncDelegate_ParametersAndReturnValueAreValid()
+    {
+        var backMethods = GetMethods(
+            typeof(Fp),
+            nameof(Fp.Back),
+            BindingFlags.Static | BindingFlags.Public).MakeGenericMethodIfPossible();
+        var funcMethods = GetMethods<FpPipeTest>(nameof(FpPipeTest.FuncMethod));
+        Assert.Multiple(() =>
+        {
+            foreach (var backMethod in backMethods)
+            {
+                var funcType = backMethod.GetParameters().First().ParameterType;
+                var @delegate = funcMethods.CreateDelegateOfType(funcType, this);
+                int genericTypeArgsCount = funcType.GenericTypeArguments.Length;
+                FpPipeTest.funcParameters = GenerateParams(genericTypeArgsCount - 1);
+
+                var result = backMethod.Invoke(null, BuildParameters(@delegate, genericTypeArgsCount == 2
+                        ? FpPipeTest.funcParameters
+                        : FpPipeTest.funcParameters.SkipLast(1)));
+
+                if (genericTypeArgsCount == 2)
+                {
+                    Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
+                }
+                else
+                {
+                    var funcResult = result as Func<object, object>;
+                    Assert.That(funcResult!.Invoke(FpPipeTest.funcParameters.Last()), Is.SameAs(FpPipeTest.funcResult));
+                }
             }
         });
     }
@@ -108,11 +142,11 @@ internal class FpPipeTest : FpTestBase
         {
             for (int i = 0; i < parameters.Length; i++)
             {
-                Assert.That(parameters[i], Is.SameAs(FpPipeTest.funcIntoParameters[i]));
+                Assert.That(parameters[i], Is.SameAs(FpPipeTest.funcParameters[i]));
             }
         });
 
-        return (R)FpPipeTest.funcIntoResult;
+        return (R)FpPipeTest.funcResult;
     }
 
     #endregion
