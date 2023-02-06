@@ -2,8 +2,6 @@
 
 internal class IfValue<T> : IfBase<T>
 {
-    private bool? condition;
-    private Func<bool>? funcCondition;
     private T? then;
 
     internal IfValue(bool condition, T then)
@@ -18,27 +16,16 @@ internal class IfValue<T> : IfBase<T>
         this.then = then;
     }
 
-    public override ICondition<T> Else(T value)
-    {
-        then = value;
-        return this;
-    }
-
-    public override ICondition<T> Else(Func<T> expression)
-    {
-        then = expression();
-        return this;
-    }
-
-    public override T? Evaluate()
+    protected override T? EvaluateStep()
     {
         if (condition.HasValue)
         {
-            return condition.Value ? then : (@else is not null ? @else.Evaluate() : default);
+            return condition.Value ? then : (ElseStep is not null ? ElseStep.Evaluate() : default);
         }
         else
         {
-            return funcCondition!() ? then : (@else is not null ? @else.Evaluate() : default);
+            return funcCondition!() ? then : (ElseStep is not null ? ElseStep.Evaluate() : default);
         }
     }
+
 }

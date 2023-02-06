@@ -41,7 +41,6 @@ public static partial class Fp
 
     #region Curry Action Last 2 args
 
-    public static Action<T1, TLast> Curry<T1, TLast>(this Action<T1, TLast> action) => (t1, last) => action(t1, last);
     public static Action<T2, TLast> Curry<T1, T2, TLast>(this Action<T1, T2, TLast> action,
         T1 t1) => (t2, last) => action(t1, t2, last);
     public static Action<T3, TLast> Curry<T1, T2, T3, TLast>(this Action<T1, T2, T3, TLast> action,
