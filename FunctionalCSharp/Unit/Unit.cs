@@ -1,10 +1,21 @@
 ﻿namespace FunctionalCSharp;
 
+/// <summary>
+/// Defines value which is returned by 'side-effect' functions.
+/// </summary>
 public class Unit 
 {
 
+    /// <summary>
+    /// Helper method which converts an expression of functions to a statement.
+    /// </summary>
     public void Void() { }
 
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<Unit> Create
         (Action action)
         => () =>
@@ -12,6 +23,11 @@ public class Unit
             action();
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T, Unit> Create<T>
         (Action<T> action)
         => t =>
@@ -19,6 +35,11 @@ public class Unit
             action(t);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, Unit> Create<T1, T2>
         (Action<T1, T2> action)
         => (t1, t2) =>
@@ -26,6 +47,11 @@ public class Unit
             action(t1, t2);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, Unit> Create<T1, T2, T3>
         (Action<T1, T2, T3> action)
         => (t1, t2, t3) =>
@@ -33,6 +59,11 @@ public class Unit
             action(t1, t2, t3);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, Unit> Create<T1, T2, T3, T4>
         (Action<T1, T2, T3, T4> action)
         => (t1, t2, t3, t4) =>
@@ -40,6 +71,11 @@ public class Unit
             action(t1, t2, t3, t4);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, Unit> Create<T1, T2, T3, T4, T5>
         (Action<T1, T2, T3, T4, T5> action)
         => (t1, t2, t3, t4, t5) =>
@@ -47,6 +83,11 @@ public class Unit
             action(t1, t2, t3, t4, t5);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, Unit> Create<T1, T2, T3, T4, T5, T6>
         (Action<T1, T2, T3, T4, T5, T6> action)
         => (t1, t2, t3, t4, t5, t6) =>
@@ -54,6 +95,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, Unit> Create<T1, T2, T3, T4, T5, T6, T7>
         (Action<T1, T2, T3, T4, T5, T6, T7> action)
         => (t1, t2, t3, t4, t5, t6, t7) =>
@@ -61,6 +107,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8) =>
@@ -68,6 +119,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9) =>
@@ -75,6 +131,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) =>
@@ -82,6 +143,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11) =>
@@ -89,6 +155,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12) =>
@@ -96,6 +167,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13) =>
@@ -103,6 +179,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14) =>
@@ -110,6 +191,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15) =>
@@ -117,6 +203,11 @@ public class Unit
             action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15);
             return Fp.UnitValue;
         };
+    /// <summary>
+    /// Converts given <paramref name="action"/> to a func delegate.
+    /// </summary>
+    /// <param name="action">Delegate to be converted.</param>
+    /// <returns>Returns converted <paramref name="action"/> to a func delegate.</returns>
     public static Func<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16, Unit> Create<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16>
         (Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, T16> action)
         => (t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16) =>
