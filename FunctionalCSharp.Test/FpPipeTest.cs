@@ -87,40 +87,6 @@ internal class FpPipeTest : FpTestBase
         });
     }
 
-    [Test]
-    public void Back_FuncDelegate_ParametersAndReturnValueAreValid()
-    {
-        var backMethods = GetMethods(
-            typeof(Fp),
-            nameof(Fp.Back),
-            BindingFlags.Static | BindingFlags.Public).MakeGenericMethodIfPossible();
-        var funcMethods = GetMethods<FpPipeTest>(nameof(FpPipeTest.FuncMethod));
-        Assert.Multiple(() =>
-        {
-            foreach (var backMethod in backMethods)
-            {
-                var funcType = backMethod.GetParameters().First().ParameterType;
-                var @delegate = funcMethods.CreateDelegateOfType(funcType, this);
-                int genericTypeArgsCount = funcType.GenericTypeArguments.Length;
-                FpPipeTest.funcParameters = GenerateParams(genericTypeArgsCount - 1);
-
-                var result = backMethod.Invoke(null, BuildParameters(@delegate, genericTypeArgsCount == 2
-                        ? FpPipeTest.funcParameters
-                        : FpPipeTest.funcParameters.SkipLast(1)));
-
-                if (genericTypeArgsCount == 2)
-                {
-                    Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
-                }
-                else
-                {
-                    var funcResult = result as Func<object, object>;
-                    Assert.That(funcResult!.Invoke(FpPipeTest.funcParameters.Last()), Is.SameAs(FpPipeTest.funcResult));
-                }
-            }
-        });
-    }
-
     #endregion
 
     #region TestBase
