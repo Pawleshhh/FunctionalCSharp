@@ -87,6 +87,19 @@ internal class FpPipeTest : FpTestBase
         });
     }
 
+    [Test]
+    public void Foo()
+    {
+        Func<int, int> add2 = x => x + 2;
+        Func<int, int> multiplyBy3 = x => x * 3;
+        Func<int, int> subtract1 = x => x - 1;
+
+        var composed = add2.Compose(multiplyBy3).Compose(subtract1);
+
+        int result = composed(5);
+        Assert.That(result, Is.EqualTo(20));
+    }
+
     #endregion
 
     #region TestBase
