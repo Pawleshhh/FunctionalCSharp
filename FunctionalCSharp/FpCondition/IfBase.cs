@@ -8,42 +8,49 @@ internal abstract class IfBase<T> : IConditionStep<T>
     protected IfBase<T>? ElseStep { get; private set; }
     protected IfBase<T>? ParentStep { get; private set; }
 
+    /// <inheritdoc/>
     public IConditionStep<T> Elif(bool condition, T then)
     {
         ElseStep = new IfValue<T>(condition, then) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public IConditionStep<T> Elif(Func<bool> condition, T then)
     {
         ElseStep = new IfValue<T>(condition, then) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public IConditionStep<T> Elif(bool condition, Func<T> then)
     {
         ElseStep = new IfExpression<T>(condition, then) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public IConditionStep<T> Elif(Func<bool> condition, Func<T> then)
     {
         ElseStep = new IfExpression<T>(condition, then) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public ICondition<T> Else(T value)
     {
         ElseStep = new IfValue<T>(true, value) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public ICondition<T> Else(Func<T> expression)
     {
         ElseStep = new IfExpression<T>(true, expression) { ParentStep = this };
         return ElseStep;
     }
 
+    /// <inheritdoc/>
     public T? Evaluate()
     {
         IfBase<T> step = this;
