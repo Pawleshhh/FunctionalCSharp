@@ -97,7 +97,7 @@ int result = If(input > 3, 3)
 Console.WriteLine(result); //prints 1
 ```
 
-When you omit the _Evaluate_ method call, the result of the If/Elif/Else method will be a delegate that represents the expression-like if statement. This delegate can be stored and executed later. 
+When you omit the _Evaluate_ method call, the result of the If/Elif/Else method will be an object that represents the expression-like if statement. This object can be stored and executed later. 
 
 ### Unit
 
