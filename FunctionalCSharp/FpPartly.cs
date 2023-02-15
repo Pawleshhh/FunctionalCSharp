@@ -17,11 +17,6 @@ public static partial class Fp
     /// <param name="action">Action delegate to make a partial application from./</param>
     /// <returns>Returns partial application of the delegate.</returns>
     public static Action<TLast> Partly<T1, TLast>(this Action<T1, TLast> action,
-    /// <summary>
-    /// Makes a partial application of a given <paramref name="action"/> delegate.
-    /// </summary>
-    /// <param name="action">Action delegate to make a partial application from./</param>
-    /// <returns>Returns partial application of the delegate.</returns>
         T1 t1) => last => action(t1, last);
     public static Action<TLast> Partly<T1, T2, TLast>(this Action<T1, T2, TLast> action,
     /// <summary>
