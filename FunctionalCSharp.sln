@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalCSharp", "FunctionalCSharp\FunctionalCSharp.csproj", "{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionalCSharp.Test", "FunctionalCSharp.Test\FunctionalCSharp.Test.csproj", "{13A7732B-422E-4CE9-874B-257D4B3B85C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FunctionalCSharp.Test", "FunctionalCSharp.Test\FunctionalCSharp.Test.csproj", "{13A7732B-422E-4CE9-874B-257D4B3B85C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +13,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BC5DDDE-56C8-4CED-9D97-90D221F1329A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{13A7732B-422E-4CE9-874B-257D4B3B85C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
