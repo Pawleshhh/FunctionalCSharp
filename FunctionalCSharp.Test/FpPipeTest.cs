@@ -15,13 +15,11 @@ internal class FpPipeTest : FpTestBase
     private static object funcIntoArg = new object();
     private static object funcResult = new object();
 
-    [Test]
-    public void Into_ActionDelegate_ParametersAreValid()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void Into_ActionDelegate_ParametersAreValid(bool isAsync)
     {
-        var intoMethods = GetMethods(
-            typeof(Fp), nameof(Fp.Into), 
-            BindingFlags.Static | BindingFlags.Public, 
-            m => !m.GetParameters().ElementAt(1).ParameterType.Name!.Contains("Func")).MakeGenericMethodIfPossible();
+        var intoMethods = GetActionIntoMethods(isAsync);
         var actionMethods = GetMethods<FpPipeTest>(nameof(FpPipeTest.ActionMethod));
         Assert.Multiple(() =>
         {
@@ -37,14 +35,11 @@ internal class FpPipeTest : FpTestBase
         });
     }
 
-    [Test]
-    public void Into_FuncDelegate_ParametersAndReturnValueAreValid()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void Into_FuncDelegate_ParametersAndReturnValueAreValid(bool isAsync = false)
     {
-        var intoMethods = GetMethods(
-            typeof(Fp), 
-            nameof(Fp.Into), 
-            BindingFlags.Static | BindingFlags.Public,
-            m => !m.GetParameters().ElementAt(1).ParameterType.Name!.Contains("Action")).MakeGenericMethodIfPossible();
+        var intoMethods = GetFuncIntoMethods(isAsync);
         var funcMethods = GetMethods<FpPipeTest>(nameof(FpPipeTest.FuncMethod));
         Assert.Multiple(() =>
         {
@@ -57,19 +52,16 @@ internal class FpPipeTest : FpTestBase
 
                 var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcParameters.SkipLast(1)));
 
-                Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
+                Assert.That(GetResult(isAsync, result), Is.SameAs(FpPipeTest.funcResult));
             }
         });
     }
 
-    [Test]
-    public void Into1_FuncDelegate_ParametersAndReturnValueAreValid()
+    [TestCase(false)]
+    [TestCase(true)]
+    public void Into1_FuncDelegate_ParametersAndReturnValueAreValid(bool isAsync = false)
     {
-        var intoMethods = GetMethods(
-            typeof(Fp),
-            nameof(Fp.Into1),
-            BindingFlags.Static | BindingFlags.Public,
-            m => !m.GetParameters().ElementAt(1).ParameterType.Name!.Contains("Action")).MakeGenericMethodIfPossible();
+        var intoMethods = GetFuncInto1Methods(isAsync);
         var funcMethods = GetMethods<FpPipeTest>(nameof(FpPipeTest.FuncMethod));
         Assert.Multiple(() =>
         {
@@ -82,10 +74,37 @@ internal class FpPipeTest : FpTestBase
 
                 var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.funcIntoArg, @delegate, FpPipeTest.funcParameters.Skip(1)));
 
-                Assert.That(result, Is.SameAs(FpPipeTest.funcResult));
+                Assert.That(GetResult(isAsync, result), Is.SameAs(FpPipeTest.funcResult));
             }
         });
     }
+
+    #endregion
+
+    #region FpPipeTest
+
+    protected object? GetResult(bool isAsync, object? result)
+        => isAsync ? (result as Task<object>)!.Result : result;
+
+    protected virtual IEnumerable<MethodInfo> GetActionIntoMethods(bool isAsync = false)
+        => GetMethods(
+            typeof(Fp), isAsync ? nameof(Fp.IntoAsync) : nameof(Fp.Into),
+            BindingFlags.Static | BindingFlags.Public,
+            m => !m.GetParameters().ElementAt(1).ParameterType.Name.Contains("Func")).MakeGenericMethodIfPossible();
+
+    protected virtual IEnumerable<MethodInfo> GetFuncIntoMethods(bool isAsync = false)
+        => GetMethods(
+            typeof(Fp),
+            isAsync ? nameof(Fp.IntoAsync) : nameof(Fp.Into),
+            BindingFlags.Static | BindingFlags.Public,
+            m => !m.GetParameters().ElementAt(1).ParameterType.Name.Contains("Action")).MakeGenericMethodIfPossible();
+
+    protected virtual IEnumerable<MethodInfo> GetFuncInto1Methods(bool isAsync = false)
+        => GetMethods(
+            typeof(Fp),
+            isAsync ? nameof(Fp.Into1Async) : nameof(Fp.Into1),
+            BindingFlags.Static | BindingFlags.Public,
+            m => !m.GetParameters().ElementAt(1).ParameterType.Name.Contains("Action")).MakeGenericMethodIfPossible();
 
     #endregion
 
