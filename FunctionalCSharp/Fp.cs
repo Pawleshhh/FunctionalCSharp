@@ -17,4 +17,25 @@ public static partial class Fp
         return () => value;
     }
 
+    /// <summary>
+    /// Performs a safe type conversion or casting on the input object to the specified type.
+    /// If the conversion is valid, returns the converted value; otherwise, returns null.
+    /// </summary>
+    /// <typeparam name="TOut">The type to which the input object should be converted.</typeparam>
+    /// <param name="in">The input object to be converted.</param>
+    /// <returns>The converted value if conversion is valid; otherwise, null.</returns>
+    public static TOut? As<TOut>(this object? @in)
+        where TOut : class
+        => @in as TOut;
+
+    /// <summary>
+    /// Performs a type conversion or casting on the input object to the specified type.
+    /// If the conversion is valid, returns the converted value; otherwise, throws an InvalidCastException.
+    /// </summary>
+    /// <typeparam name="TOut">The type to which the input object should be converted.</typeparam>
+    /// <param name="in">The input object to be converted.</param>
+    /// <returns>The converted value if the conversion is valid.</returns>
+    /// <exception cref="InvalidCastException">Thrown when the conversion is not possible.</exception>
+    public static TOut? Cast<TOut>(this object? @in)
+        => (TOut?)@in;
 }
