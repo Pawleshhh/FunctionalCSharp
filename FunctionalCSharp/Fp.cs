@@ -17,6 +17,22 @@ public static partial class Fp
         return () => value;
     }
 
+#pragma warning disable IDE0060 // Remove unused parameter
+    /// <summary>
+    /// Converts the given object into a statement without returning any value.
+    /// </summary>
+    /// <param name="value">The object to be converted into a statement.</param>
+    public static void ToStatement(this object value) { }
+
+    /// <summary>
+    /// Converts the given object into a <see cref="Unit"/> value.
+    /// </summary>
+    /// <param name="value">The object to be converted into a <see cref="Unit"/> value.</param>
+    /// <returns>A <see cref="Unit"/> value representing the conversion completion.</returns>
+    public static Unit AsUnit(this object value)
+        => UnitValue;
+#pragma warning restore IDE0060 // Remove unused parameter
+
     /// <summary>
     /// Performs a safe type conversion or casting on the input object to the specified type.
     /// If the conversion is valid, returns the converted value; otherwise, returns null.

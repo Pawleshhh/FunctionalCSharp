@@ -8,13 +8,37 @@ internal class FpTest
     public void AsFunc_PassValue_ResultOfFuncIsThePassedValue()
     {
         // ARRANGE
-        object value = new object();
+        object value = new();
 
         // ACT
         var result = Fp.AsFunc(value);
 
         // ASSERT
         Assert.That(result(), Is.SameAs(value));
+    }
+
+    [Test]
+    public void ToStatement_Test()
+    {
+        // Arrange
+        object myObject = new();
+
+        // Act & Assert
+        Assert.DoesNotThrow(() => myObject.ToStatement());
+    }
+
+    // Test for the AsUnit method
+    [Test]
+    public void AsUnit_Test()
+    {
+        // Arrange
+        object myObject = new object();
+
+        // Act
+        Unit result = myObject.AsUnit();
+
+        // Assert
+        Assert.That(result, Is.SameAs(Fp.UnitValue));
     }
 
     public class BaseClass { }

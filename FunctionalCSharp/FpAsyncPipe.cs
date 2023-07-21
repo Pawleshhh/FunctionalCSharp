@@ -8,160 +8,240 @@ public static partial class Fp
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<TLast>(this TLast last,
         Action<TLast> action)
     {
         await Task.Run(() => action(last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, TLast>(this TLast last,
         Action<T1, TLast> action,
         T1 t1)
     {
         await Task.Run(() => action(t1, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, TLast>(this TLast last,
         Action<T1, T2, TLast> action,
         T1 t1, T2 t2)
     {
         await Task.Run(() => action(t1, t2, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, TLast>(this TLast last,
         Action<T1, T2, T3, TLast> action,
         T1 t1, T2 t2, T3 t3)
     {
         await Task.Run(() => action(t1, t2, t3, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, TLast>(this TLast last,
         Action<T1, T2, T3, T4, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4)
     {
         await Task.Run(() => action(t1, t2, t3, t4, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13, T14 t14)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, last));
+        return UnitValue;
     }
     /// <summary>
     /// F#-like (|>) async pipe function.
     /// </summary>
     /// <param name="action">Delegate which receives pipe'd value.</param>
-    public static async Task IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TLast>(this TLast last,
+    /// <returns>
+    /// A <see cref="FunctionalCSharp.Unit"/> value representing the completion of the pipelining operation.
+    /// Enables method chaining for pipeline continuation.
+    /// </returns>
+    public static async Task<Unit> IntoAsync<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TLast>(this TLast last,
         Action<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14, T15, TLast> action,
         T1 t1, T2 t2, T3 t3, T4 t4, T5 t5, T6 t6, T7 t7, T8 t8, T9 t9, T10 t10, T11 t11, T12 t12, T13 t13, T14 t14, T15 t15)
     {
         await Task.Run(() => action(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, last));
+        return UnitValue;
     }
     #endregion Into Action
 
