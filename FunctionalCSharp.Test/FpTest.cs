@@ -65,7 +65,7 @@ internal class FpTest
     }
 
     [Test]
-    public void Cast_ValidConversion_ShouldReturnConvertedValue()
+    public void Cast_ClassValidConversion_ShouldReturnConvertedValue()
     {
         // Arrange
         BaseClass baseObject = new DerivedClass();
@@ -83,7 +83,7 @@ internal class FpTest
     }
 
     [Test]
-    public void Cast_InvalidConversion_ShouldThrowInvalidCastException()
+    public void Cast_ClassInvalidConversion_ShouldThrowInvalidCastException()
     {
         // Arrange
         BaseClass baseObject = new BaseClass();
@@ -93,7 +93,7 @@ internal class FpTest
     }
 
     [Test]
-    public void Cast_NullInput_ShouldReturnNull()
+    public void Cast_ClassNullInput_ShouldReturnNull()
     {
         // Arrange
         BaseClass? baseObject = null;
@@ -104,4 +104,30 @@ internal class FpTest
         // Assert
         Assert.That(result, Is.Null);
     }
+
+    public struct MyStruct { public int Value { get; set; } }
+
+    [Test]
+    public void Cast_StructValidConversion_ShouldReturnConvertedValue()
+    {
+        // Arrange
+        object myStruct = new MyStruct() { Value = 5 };
+
+        // Act
+        var result = myStruct.Cast<MyStruct>();
+
+        // Assert
+        Assert.That(myStruct, Is.EqualTo(result));
+    }
+
+    [Test]
+    public void Cast_StructInvalidConversion_ShouldThrowInvalidCastException()
+    {
+        // Arrange
+        object baseObject = 5;
+
+        // Act & Assert
+        Assert.Throws<InvalidCastException>(() => baseObject.Cast<MyStruct>());
+    }
+
 }
