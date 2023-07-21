@@ -27,7 +27,6 @@ internal class FpTest
         Assert.DoesNotThrow(() => myObject.ToStatement());
     }
 
-    // Test for the AsUnit method
     [Test]
     public void AsUnit_Test()
     {
