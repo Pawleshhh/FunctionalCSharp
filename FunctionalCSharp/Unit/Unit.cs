@@ -6,11 +6,6 @@
 public class Unit 
 {
 
-    /// <summary>
-    /// Helper method which converts an expression of functions to a statement.
-    /// </summary>
-    public void Void() { }
-
     #region Create
 
     /// <summary>

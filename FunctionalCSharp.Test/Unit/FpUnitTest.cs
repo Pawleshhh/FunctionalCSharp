@@ -8,10 +8,6 @@ internal class FpUnitTest : FpTestBase
 
     private static object[] parameters = new object[0];
 
-    [Test]
-    public void Void_Passes()
-        => new Unit().Void();
-
     [TestCase(false)]
     [TestCase(true)]
     public void Create_AllOverloadedCreateMethods_ArgumentsPassedCorrectlyAndReturnsUnit(bool isAsync)

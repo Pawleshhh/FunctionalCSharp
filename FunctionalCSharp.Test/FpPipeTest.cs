@@ -30,7 +30,8 @@ internal class FpPipeTest : FpTestBase
                 FpPipeTest.actionIntoParameters = GenerateParams(actionType.GenericTypeArguments.Length);
                 FpPipeTest.actionIntoLastArg = FpPipeTest.actionIntoParameters.Last();
 
-                intoMethod.Invoke(null, BuildParameters(FpPipeTest.actionIntoLastArg, @delegate, FpPipeTest.actionIntoParameters.SkipLast(1)));
+                var result = intoMethod.Invoke(null, BuildParameters(FpPipeTest.actionIntoLastArg, @delegate, FpPipeTest.actionIntoParameters.SkipLast(1)));
+                Assert.That(GetResult(isAsync, result) as Unit, Is.SameAs(Fp.UnitValue));
             }
         });
     }
@@ -84,7 +85,7 @@ internal class FpPipeTest : FpTestBase
     #region FpPipeTest
 
     protected object? GetResult(bool isAsync, object? result)
-        => isAsync ? (result as Task<object>)!.Result : result;
+        => isAsync ? ((result as Task<object>)?.Result ?? (result as Task<Unit>)!.Result) : result;
 
     protected virtual IEnumerable<MethodInfo> GetActionIntoMethods(bool isAsync = false)
         => GetMethods(
